@@ -16,7 +16,7 @@ local function findItem(item_name, playerChest)
         chest = i
         slot = j
         count = w["count"]
-        instance[num] = {chest, slot, count}
+        instance[num] = {chest = chest, slot = slot, count = count}
         num = num + 1
       end
     end
@@ -29,7 +29,7 @@ function retrieve.retrieveItem(item_name, reqAmmount, targetChest)
   local item = findItem(item_name, targetChest)
   local availAmmount = 0
   for i, v in pairs(item) do
-    availAmmount = availAmmount + v["count"]
+    availAmmount = availAmmount + tonumber(v["count"])
   end
   local playerChest = peripheral.wrap(targetChest)
   for i, v in pairs(item) do
