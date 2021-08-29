@@ -21,12 +21,20 @@ local function findItem(item_name, playerChest)
       end
     end
   end
-  return instance
+  if instance == {} then
+    return false
+  else
+    return instance
+  end
 end
 
 -- takes the item's display name, requested ammount and the target chest, and moves the items to it.
 function retrieve.retrieveItem(item_name, reqAmmount, targetChest)
   local item = findItem(item_name, targetChest)
+  if item == {} then
+    print("No items found!")
+    return false
+  end
   local availAmmount = 0
   for i, v in pairs(item) do
     availAmmount = availAmmount + tonumber(v["count"])
@@ -41,6 +49,7 @@ function retrieve.retrieveItem(item_name, reqAmmount, targetChest)
     end
   end
   if reqAmmount > 0 then
+    print("not enough of this item available!")
     return false
   end
 end
