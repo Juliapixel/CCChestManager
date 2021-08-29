@@ -22,7 +22,7 @@ function store.storeItems(chest)
     end
     for j, w in pairs(instancesFound) do
       if instancesFound[j]["spaceAvailable"] > 0 then
-        local pushed = inputChest.pushItems(instancesFound[j]["chest"], i)
+        local pushed = inputChest.pushItems(instancesFound[j]["chest"], i, nil, instancesFound[j]["slot"])
         inputInv[i]["count"] = inputInv[i]["count"] - pushed
         if inputInv[i]["count"] <= 0 then
           break
