@@ -1,6 +1,6 @@
 listInv = {}
 
-function getInvs(playerChest)
+function listInv.getInvs(playerChest)
   playerChestName = playerChest
   local invs = peripheral.getNames()
   for i, v in pairs(invs) do
@@ -10,6 +10,16 @@ function getInvs(playerChest)
     elseif v == playerChest then
       invs[i] = nil
     end
+  end
+  return invs
+end
+
+--returns the name of all connected inventories and the ammount of free slots in them
+function listInv.getFreeSpaces(playerChest)
+  local invs = listInv.getInvs(playerChest)
+  for i, v in pairs(invs) do
+    invs[i]["chest"] = v
+    invs[i]["freeSlots"] = peripheral.call(invs[i], "size") - #peripheral.call(invs[i], "list")
   end
   return invs
 end
