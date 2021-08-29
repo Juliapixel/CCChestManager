@@ -16,7 +16,7 @@ function store.storeItems(chest)
   local inputInv = inputChest.list()
   local index = 1
   for i, v in pairs(inputInv) do
-    local instancesFound = listInv.findItem(v["name"], chest, "name")
+    local instancesFound = listInv.findItem(v["name"], chest, "name", listInv.listAllInvs())
     if instancesFound == {} then
       storeAnywhere(chest, i)
     end
