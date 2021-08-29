@@ -34,7 +34,7 @@ function retrieve.retrieveItem(item_name, reqAmmount, targetChest)
   local playerChest = peripheral.wrap(targetChest)
   for i, v in pairs(item) do
     local pulled = 0
-    pulled = playerChest.pullItems(v["chest"], v["slot"], reqAmmount)
+    pulled = playerChest.pullItems(v["chest"], tonumber(v["slot"]), reqAmmount)
     reqAmmount = reqAmmount - pulled
     if reqAmmount <= 0 then
       break
