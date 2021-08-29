@@ -5,7 +5,7 @@ function getInvs()
   for i, v in pairs(invs) do
     type = peripheral.getType(v)
     if type ~= "minecraft:chest" then
-      table.remove(invs, i)
+      invs[i] = nil
     end
   end
   return invs
@@ -24,7 +24,5 @@ function listInv.listAllInvs()
   end
   return allInvs
 end
-
-print(textutils.serialise(listInv.listAllInvs()))
 
 return listInv

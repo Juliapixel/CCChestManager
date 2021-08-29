@@ -7,16 +7,24 @@ local function findItem(item_name)
   local chest = ""
   local slot = 0
   local count = 0
+  local instance = {}
+  local num = 1
   for i, v in pairs(listInv.listAllInvs()) do
     for j, w in pairs(v) do
-      if w["name"] == item_name then
-        chest = v
-        slot = w
+      if w["displayName"] == item_name then
+        chest = i
+        slot = j
         count = w["count"]
-        return chest, slot, count
+        instance[num] = {chest, slot, count}
+        num = num + 1
       end
     end
   end
+  return instance
+end
+
+local function get()
+
 end
 
 return retrieve
