@@ -27,7 +27,7 @@ end
 -- returns a table with inventory names' as indexes and their items as their contents.
 function listInv.listAllInvs(playerChest)
   local allInvs = {}
-  for i, v in pairs(getInvs(playerChest)) do
+  for i, v in pairs(listInv.getInvs(playerChest)) do
     allInvs[v] = {}
     local curInv = peripheral.wrap(v)
     for j, w in pairs(curInv.list()) do
