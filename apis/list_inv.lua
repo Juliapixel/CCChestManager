@@ -17,11 +17,13 @@ end
 --returns the name of all connected inventories and the ammount of free slots in them
 function listInv.getFreeSpaces(playerChest)
   local invs = listInv.getInvs(playerChest)
+  local freeInvs = {}
   for i, v in pairs(invs) do
-    invs[i]["chest"] = v
-    invs[i]["freeSlots"] = peripheral.call(invs[i], "size") - #peripheral.call(invs[i], "list")
+    freeInvs[i] = {}
+    freeInvs[i]["chest"] = v
+    freeInvs[i]["freeSlots"] = peripheral.call(invs[i], "size") - #peripheral.call(invs[i], "list")
   end
-  return invs
+  return freeInvs
 end
 
 -- returns a table with inventory names' as indexes and their items as their contents.

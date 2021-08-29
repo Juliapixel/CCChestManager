@@ -4,9 +4,9 @@ store = {}
 
 local function storeAnywhere(chest, slot)
   local invs = listInv.getFreeSpaces(chest)
-  for i, v in invs do
+  for i, v in pairs(invs) do
     if invs[i]["freeSlots"] > 0 then
-      peripheral.call(invs[i]["chest"], "pushItems", slot)
+      peripheral.call(chest, "pushItems", invs[i]["chest"], slot)
     end
   end
 end
