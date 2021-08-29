@@ -8,6 +8,7 @@ local function findItem(item_name, playerChest)
   local chest = ""
   local slot = 0
   local count = 0
+  local spaceAvailable = 0
   local instance = {}
   local num = 1
   for i, v in pairs(listInv.listAllInvs(playerChest)) do
@@ -16,7 +17,8 @@ local function findItem(item_name, playerChest)
         chest = i
         slot = j
         count = w["count"]
-        instance[num] = {chest = chest, slot = slot, count = count}
+        spaceAvailable = w["maxCount"] - w["count"]
+        instance[num] = {chest = chest, slot = slot, count = count, spaceAvailable = spaceAvailable}
         num = num + 1
       end
     end
