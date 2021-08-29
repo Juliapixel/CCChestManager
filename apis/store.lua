@@ -1,0 +1,3 @@
+store = {}
+
+return store
