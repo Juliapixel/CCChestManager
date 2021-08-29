@@ -3,6 +3,4 @@ local retrieve = require("apis.retrieve")
 
 local args = {...}
 
-if args[1] == "store" then
-  store.storeItems()
-end
+retrieve.retrieveItem(args[1], args[2], args[3])
