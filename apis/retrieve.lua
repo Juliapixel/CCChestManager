@@ -37,8 +37,11 @@ function retrieve.retrieveItem(item_name, reqAmmount, targetChest)
     pulled = playerChest.pullItems(v["chest"], v["slot"], tonumber(reqAmmount))
     reqAmmount = reqAmmount - pulled
     if reqAmmount <= 0 then
-      break
+      return true
     end
+  end
+  if reqAmmount > 0 then
+    return false
   end
 end
 
