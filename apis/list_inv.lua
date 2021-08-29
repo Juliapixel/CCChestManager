@@ -39,14 +39,20 @@ function listInv.listAllInvs(playerChest)
 end
 -- takes a minecraft display name and returns a table of all instances of that item with their positions and ammounts
 -- {[1] = {"chest" = "", "slot" = number, "count" = number, "spaceAvailable" = number} }
-function listInv.findItem(item_name, playerChest, nameType)
+function listInv.findItem(item_name, playerChest, nameType, inputAllInvs)
   local chest = ""
   local slot = 0
   local count = 0
   local spaceAvailable = 0
   local instance = {}
   local num = 1
-  for i, v in pairs(listInv.listAllInvs(playerChest)) do
+  local allInvs = {}
+  if inputAllInvs == nil then
+    allInvs = listInv.listAllInvs(playerChest)
+  else
+    allInvs = inputAllInvs
+  end
+  for i, v in pairs(allInvs) do
     for j, w in pairs(v) do
       if w[nameType] == item_name then
         chest = i
