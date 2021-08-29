@@ -11,15 +11,18 @@ local function getInvs()
   return invs
 end
 
-local function listAllInvs()
+function listInv.listAllInvs()
   local allInvs = {}
   for i, v in pairs(getInvs()) do
     local curInv = peripheral.wrap(v)
-    allInvs[v] = curInv.list()
+    for j, w in pairs(curInv.list()) do
+      local curItem = curInv.getItemDetail(w)
+      allInvs[v][w] = curItem
+    end
   end
   return allInvs
 end
 
-print(listAllInvs())
+print(textutils.serialise(listInv.listAllInvs()))
 
 return listInv
