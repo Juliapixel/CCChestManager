@@ -31,10 +31,8 @@ function listInv.listAllInvs(playerChest)
   local allInvs = {}
   for i, v in pairs(listInv.getInvs(playerChest)) do
     allInvs[v] = {}
-    local curInv = peripheral.wrap(v)
-    for j, w in pairs(curInv.list()) do
-      local curItem = curInv.getItemDetail(j)
-      allInvs[v][j] = curItem
+    for j, w in pairs(peripheral.call(v, "list")) do
+      allInvs[v][j] = peripheral.call(v, "getItemDetail", j)
     end
   end
   return allInvs
