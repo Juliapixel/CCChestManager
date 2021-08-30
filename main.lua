@@ -18,10 +18,10 @@ chin.clear()
 chin.setCursorPos(w - #"Settings" + 1, 1)
 chin.write("Settings ")
 
-local deposit = button.new(1, 1, #" Deposit ", 1)
+local deposit = button:new(1, 1, #" Deposit ", 1)
 
 while true do
-  if deposit.waitForClick() then
+  if deposit:waitForClick() then
     print("bruh")
   end
 end
