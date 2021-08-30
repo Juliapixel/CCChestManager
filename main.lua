@@ -19,9 +19,24 @@ chin.setCursorPos(w - #"Settings" + 1, 1)
 chin.write("Settings ")
 
 local deposit = button:new(1, 1, #" Deposit ", 1)
+local withdraw = button:new(1, #" Deposit " + 1, #"Withdraw ", 1)
+
+local function waitForDeposit()
+  while true do
+    if deposit:waitForClick() then
+      print("bruh")
+    end
+  end
+end
+
+local function waitForWithdraw()
+  while true do
+    if withdraw:waitForClick() then
+      print("brah")
+    end
+  end
+end
 
 while true do
-  if deposit:waitForClick() then
-    print("bruh")
-  end
+  parallel.waitForAny(waitForDeposit, waitForWithdraw)
 end
