@@ -7,7 +7,7 @@ local w, h = term.getSize()
 local header = window.create(term.current(), 1, 1, w, 1)
 local main = window.create(term.current(), 1, 2, w, h - 2)
 local chin = window.create(term.current(), 1, h, w, 1)
-local depositOpts = window.create(term.current(), 1, 2, #"Confirm depositButton?", 4, false)
+local depositOpts = window.create(term.current(), 1, 2, #"Confirm deposit?", 2, false)
 local settings = {}
 
 local function getSettings()
@@ -21,7 +21,7 @@ getSettings()
 
 depositOpts.setBackgroundColor(colors.gray)
 depositOpts.clear()
-depositOpts.write("Confirm depositButton?")
+depositOpts.write("Confirm deposit?")
 depositOpts.setCursorPos(4, 2)
 depositOpts.write("Yes")
 depositOpts.setCursorPos(11, 2)
