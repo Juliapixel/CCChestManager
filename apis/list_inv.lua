@@ -31,11 +31,14 @@ end
 
 -- returns a table with inventory names' as indexes and their items as their contents.
 function listInv.updateAllInvs(playerChest)
+  local allItemsIndex = 1
   for i, v in pairs(listInv.getInvs(playerChest)) do
     allInvs[v] = {}
     for j, w in pairs(peripheral.call(v, "list")) do
-      allInvs[v][j] = peripheral.call(v, "getItemDetail", j)
-      
+      local curItemDetail = peripheral.call(v, "getItemDetail", j)
+      allInvs[v][j] = curItemDetail
+      allItems[allItemsIndex] = curItemDetail["displayName"]
+      allItemsIndex = allItemsIndex + 1
     end
   end
 end
@@ -43,6 +46,12 @@ end
 function listInv.getAllInvs()
   return allInvs
 end
+
+function listInv.getAllItems()
+  return allItems
+end
+
+
 -- takes a minecraft display name and returns a table of all instances of that item with their positions and ammounts
 -- {[1] = {"chest" = "", "slot" = number, "count" = number, "spaceAvailable" = number} }
 function listInv.findItem(item_name, playerChest, nameType, inputAllInvs)
