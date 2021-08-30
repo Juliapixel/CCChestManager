@@ -1,5 +1,8 @@
 listInv = {}
 
+local allInvs = {}
+local allItems = {}
+
 function listInv.getInvs(playerChest)
   playerChestName = playerChest
   local invs = peripheral.getNames()
@@ -27,14 +30,17 @@ function listInv.getFreeSpaces(playerChest)
 end
 
 -- returns a table with inventory names' as indexes and their items as their contents.
-function listInv.listAllInvs(playerChest)
-  local allInvs = {}
+function listInv.updateAllInvs(playerChest)
   for i, v in pairs(listInv.getInvs(playerChest)) do
     allInvs[v] = {}
     for j, w in pairs(peripheral.call(v, "list")) do
       allInvs[v][j] = peripheral.call(v, "getItemDetail", j)
+      
     end
   end
+end
+
+function listInv.getAllInvs()
   return allInvs
 end
 -- takes a minecraft display name and returns a table of all instances of that item with their positions and ammounts
@@ -48,7 +54,7 @@ function listInv.findItem(item_name, playerChest, nameType, inputAllInvs)
   local num = 1
   local allInvs = {}
   if inputAllInvs == nil then
-    allInvs = listInv.listAllInvs(playerChest)
+    allInvs = listInv.updateAllInvs(playerChest)
   else
     allInvs = inputAllInvs
   end

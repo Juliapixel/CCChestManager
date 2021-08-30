@@ -15,8 +15,11 @@ function store.storeItems(chest)
   local inputChest = peripheral.wrap(chest)
   local inputInv = inputChest.list()
   local index = 1
+  if listInv.getAllInvs() == {} then
+    listInv.updateAllInvs(chest)
+  end
   for i, v in pairs(inputInv) do
-    local instancesFound = listInv.findItem(v["name"], chest, "name", listInv.listAllInvs(chest))
+    local instancesFound = listInv.findItem(v["name"], chest, "name", listInv.getAllInvs())
     if instancesFound == {} then
       storeAnywhere(chest, i)
     end
@@ -33,6 +36,7 @@ function store.storeItems(chest)
       storeAnywhere(chest, i)
     end
   end
+  listInv.updateAllInvs(chest)
 end
 
 return store

@@ -5,7 +5,10 @@ retrieve = {}
 
 -- takes the item's display name, requested ammount and the target chest, and moves the items to it.
 function retrieve.retrieveItem(item_name, reqAmmount, targetChest)
-  local item = listInv.findItem(item_name, targetChest, "displayName")
+  if listInv.getAllInvs() == {} then
+    listInv.updateAllInvs(targetChest)
+  end
+  local item = listInv.findItem(item_name, targetChest, "displayName", listInv.getAllInvs())
   if item == {} then
     print("No items found!")
     return false
