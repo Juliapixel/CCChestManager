@@ -22,6 +22,8 @@ function Button:waitForClick()
   local event, butt, clickX, clickY= os.pullEvent("mouse_click")
   if clickX >= self.x and clickX < self.x + self.w and clickY >= self.y and clickY < self.y + self.h and self.active == true then
     return true
+  else
+    return false
   end
 end
 
