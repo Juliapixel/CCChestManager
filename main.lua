@@ -55,6 +55,7 @@ local function depositMode()
   withdrawButton:setActive(true)
   settingsButton:setActive(true)
   yes:setActive(false)
+  main.redraw()
 end
 
 local function withdrawMode()
