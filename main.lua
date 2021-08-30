@@ -19,7 +19,7 @@ chin.setCursorPos(w - #"Settings" + 1, 1)
 chin.write("Settings ")
 
 local deposit = button:new(1, 1, #" Deposit ", 1)
-local withdraw = button:new(1, #" Deposit " + 1, #"Withdraw ", 1)
+local withdraw = button:new(#" Deposit " + 1, 1, #"Withdraw ", 1)
 
 local function waitForDeposit()
   while true do
