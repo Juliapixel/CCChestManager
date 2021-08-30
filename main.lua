@@ -47,7 +47,7 @@ local function depositMode()
   withdrawButton:setActive(false)
   settingsButton:setActive(false)
   local yes = button:new(4, 3, 3, 1)
-  if yes.waitForClick then
+  if yes:waitForClick() then
     store.storeItems(settings.chest)
   end
   depositOpts.setVisible(false)
