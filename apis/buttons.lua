@@ -8,7 +8,7 @@ local Button = {
 
 function Button:new(x, y, w, h, activity)
   local object
-  object = setmetatable(self, {})
+  object = setmetatable({}, self)
   self.__index = self
   object.x = x
   object.y = y
