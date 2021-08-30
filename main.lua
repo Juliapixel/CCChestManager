@@ -7,6 +7,14 @@ local w, h = term.getSize()
 local header = window.create(term.current(), 1, 1, w, 1)
 local main = window.create(term.current(), 1, 2, w, h - 2)
 local chin = window.create(term.current(), 1, h, w, 1)
+local depositOpts = window.create(term.current(), 1, 2, #"Confirm deposit?", 4, false)
+
+depositOpts.setBackgroundColor(colors.gray)
+depositOpts.write("Confirm deposit?")
+depositOpts.setCursorPos(3, 2)
+depositOpts.write("Yes")
+depositOpts.setCursorPos(10, 2)
+depositOpts.write("No")
 
 header.setBackgroundColor(colors.blue)
 header.clear()
@@ -20,11 +28,25 @@ chin.write("Settings ")
 
 local deposit = button:new(1, 1, #" Deposit ", 1)
 local withdraw = button:new(#" Deposit " + 1, 1, #"Withdraw ", 1)
+local settings = button:new(w - #"Settings" + 1, h, #"Settings", 1)
+
+local function depositMode()
+  depositOpts.setVisible(true)
+  deposit:setActive(false)
+end
+
+local function withdrawMode()
+
+end
+
+local function settingsMode()
+
+end
 
 local function waitForDeposit()
   while true do
     if deposit:waitForClick() then
-      print("bruh")
+      depositMode()
     end
   end
 end
@@ -32,11 +54,19 @@ end
 local function waitForWithdraw()
   while true do
     if withdraw:waitForClick() then
-      print("brah")
+      withdrawMode()
+    end
+  end
+end
+
+local function waitForSettings()
+  while true do
+    if withdraw:waitForClick() then
+      settingsMode()
     end
   end
 end
 
 while true do
-  parallel.waitForAny(waitForDeposit, waitForWithdraw)
+  parallel.waitForAny(waitForDeposit, waitForWithdraw, waitForSettings)
 end
